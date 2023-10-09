@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">ForegroundServiceAndBroadcastReceiver</string>
+    <string name="back">BACk</string>
 </resources>
