@@ -19,14 +19,14 @@ import com.danilkharytonov.foregroundserviceandbroadcastreceiver.R
 
 class ItemForegroundService : Service() {
 
-    override fun onStart(intent: Intent?, startId: Int) {
-        super.onStart(intent, startId)
-        Log.d("start", "notification")
+    override fun onCreate() {
+        super.onCreate()
+        Log.d("Service", "Service created")
     }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
+        Log.d("Service", "Service started")
 
-        Log.d("notification", "notification")
         val builder = NotificationCompat.Builder(this, "channel_id")
             .setSmallIcon(R.drawable.ic_launcher_foreground)
             .setContentTitle("Notification")
@@ -44,7 +44,7 @@ class ItemForegroundService : Service() {
 
         val notificationManager = NotificationManagerCompat.from(this)
 
-        // Проверьте разрешения INTERNET и FOREGROUND_SERVICE
+
         if (ActivityCompat.checkSelfPermission(
                 this,
                 Manifest.permission.INTERNET
@@ -61,7 +61,6 @@ class ItemForegroundService : Service() {
     }
 
     override fun onBind(intent: Intent?): IBinder? {
-
         return null
     }
 }

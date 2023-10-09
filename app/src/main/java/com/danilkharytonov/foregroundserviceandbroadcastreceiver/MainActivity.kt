@@ -12,7 +12,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         startService(Intent(this, ItemForegroundService::class.java))
-        Log.d("service", "service is started")
     }
 
     override fun onDestroy() {

@@ -29,7 +29,6 @@ class ListItemsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = ListItemFragmentBinding.inflate(inflater)
-        requireContext().startService(Intent(requireContext(), ItemForegroundService::class.java))
         return _binding?.root
     }
 
