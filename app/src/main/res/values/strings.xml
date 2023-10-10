@@ -1,4 +1,10 @@
 <resources>
     <string name="app_name">ForegroundServiceAndBroadcastReceiver</string>
-    <string name="back">BACk</string>
+    <string name="back">BACK</string>
+    <string name="notification">Notification</string>
+    <string name="foreground_application">Foreground Application</string>
+    <string name="id">"id: %d"</string>
+    <string name="name">"name: %s"</string>
+    <string name="description">"description: %s"</string>
+
 </resources>

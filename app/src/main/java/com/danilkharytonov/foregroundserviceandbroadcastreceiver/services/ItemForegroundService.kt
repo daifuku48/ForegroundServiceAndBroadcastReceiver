@@ -6,41 +6,35 @@ import android.app.NotificationManager
 import android.app.PendingIntent
 import android.app.Service
 import android.content.Intent
-import android.content.IntentFilter
 import android.content.pm.PackageManager
 import android.os.Build
 import android.os.IBinder
-import android.util.Log
 import androidx.core.app.ActivityCompat
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
+import com.danilkharytonov.foregroundserviceandbroadcastreceiver.MainActivity.Companion.APP_NOTIFICATION_CLICK
+import com.danilkharytonov.foregroundserviceandbroadcastreceiver.MainActivity.Companion.CHANNEL_ID
+import com.danilkharytonov.foregroundserviceandbroadcastreceiver.MainActivity.Companion.CHANNEL_NAME
 import com.danilkharytonov.foregroundserviceandbroadcastreceiver.R
 
 
 class ItemForegroundService : Service() {
-    private val broadcastReceiver = ItemBroadcastReceiver()
-    override fun onCreate() {
-        super.onCreate()
-        Log.d("Service", "Service created")
-    }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
-        Log.d("Service", "Service started")
 
-        val notificationIntent = Intent("APP_NOTIFICATION_CLICK")
-        val contentIntent = PendingIntent.getBroadcast(
-            this, 0,
+        val notificationIntent = Intent(APP_NOTIFICATION_CLICK)
+        val contentIntent = PendingIntent.getBroadcast( this, 0,
             notificationIntent, PendingIntent.FLAG_MUTABLE)
-        val builder = NotificationCompat.Builder(this, "channel_id")
+        val builder = NotificationCompat.Builder(this, CHANNEL_ID)
             .setSmallIcon(R.drawable.ic_launcher_foreground)
-            .setContentTitle("Notification")
-            .setContentText("Foreground Application")
+            .setContentTitle(getString(R.string.notification))
+            .setContentText(getString(R.string.foreground_application))
             .setContentIntent(contentIntent)
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val channel = NotificationChannel(
-                "channel_id",
-                "Channel Name",
+                CHANNEL_ID,
+                CHANNEL_NAME,
                 NotificationManager.IMPORTANCE_DEFAULT
             )
             val notificationManager = getSystemService(NotificationManager::class.java)
