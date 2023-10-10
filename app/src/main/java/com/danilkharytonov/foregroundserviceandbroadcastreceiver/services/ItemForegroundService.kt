@@ -43,7 +43,6 @@ class ItemForegroundService : Service() {
 
         val notificationManager = NotificationManagerCompat.from(this)
 
-
         if (ActivityCompat.checkSelfPermission(
                 this,
                 Manifest.permission.INTERNET

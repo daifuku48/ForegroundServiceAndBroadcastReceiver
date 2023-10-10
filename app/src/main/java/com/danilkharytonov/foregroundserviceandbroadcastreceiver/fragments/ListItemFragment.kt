@@ -37,7 +37,6 @@ class ListItemFragment: Fragment() {
         super.onViewCreated(view, savedInstanceState)
         initItemList()
         checkIntentForBroadCastReceiver()
-
     }
 
     private fun initItemList(){
