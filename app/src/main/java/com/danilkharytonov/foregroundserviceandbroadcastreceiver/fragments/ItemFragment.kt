@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.danilkharytonov.foregroundserviceandbroadcastreceiver.MainActivity.Companion.ITEM_KEY_ID
 import com.danilkharytonov.foregroundserviceandbroadcastreceiver.MainActivity.Companion.SHARED_PREF
-import com.danilkharytonov.foregroundserviceandbroadcastreceiver.MainActivity.Companion.UNDEFIEND_VALUE
+import com.danilkharytonov.foregroundserviceandbroadcastreceiver.MainActivity.Companion.UNDEFINED_VALUE
 import com.danilkharytonov.foregroundserviceandbroadcastreceiver.R
 import com.danilkharytonov.foregroundserviceandbroadcastreceiver.databinding.FragmentItemBinding
 import com.danilkharytonov.foregroundserviceandbroadcastreceiver.model.Items
@@ -32,7 +32,7 @@ class ItemFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val sharedPreferences = requireContext().getSharedPreferences(SHARED_PREF, Context.MODE_PRIVATE)
-        val id = sharedPreferences.getInt(ITEM_KEY_ID, UNDEFIEND_VALUE)
+        val id = sharedPreferences.getInt(ITEM_KEY_ID, UNDEFINED_VALUE)
         val item = Items.getItemById(id)
         binding.itemId.text = getString(R.string.id, item.id)
         binding.itemName.text = getString(R.string.name, item.name)

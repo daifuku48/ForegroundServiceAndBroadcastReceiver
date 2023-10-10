@@ -10,7 +10,7 @@ import com.danilkharytonov.foregroundserviceandbroadcastreceiver.MainActivity.Co
 import com.danilkharytonov.foregroundserviceandbroadcastreceiver.MainActivity.Companion.ITEM_FRAGMENT_ID
 import com.danilkharytonov.foregroundserviceandbroadcastreceiver.MainActivity.Companion.ITEM_KEY_ID
 import com.danilkharytonov.foregroundserviceandbroadcastreceiver.MainActivity.Companion.SHARED_PREF
-import com.danilkharytonov.foregroundserviceandbroadcastreceiver.MainActivity.Companion.UNDEFIEND_VALUE
+import com.danilkharytonov.foregroundserviceandbroadcastreceiver.MainActivity.Companion.UNDEFINED_VALUE
 
 class ItemBroadcastReceiver : BroadcastReceiver() {
 
@@ -21,8 +21,8 @@ class ItemBroadcastReceiver : BroadcastReceiver() {
 
         if (intent?.action == APP_NOTIFICATION_CLICK) {
             val sharedPreferences = context.getSharedPreferences(SHARED_PREF, Context.MODE_PRIVATE)
-            val id = sharedPreferences.getInt(ITEM_KEY_ID, UNDEFIEND_VALUE)
-            if (id == UNDEFIEND_VALUE) {
+            val id = sharedPreferences.getInt(ITEM_KEY_ID, UNDEFINED_VALUE)
+            if (id == UNDEFINED_VALUE) {
                 context.startActivity(Intent(context, MainActivity::class.java).apply {
                     putExtra(FRAGMENT_ID, ITEMS_LIST_FRAGMENT_ID)
                 })
