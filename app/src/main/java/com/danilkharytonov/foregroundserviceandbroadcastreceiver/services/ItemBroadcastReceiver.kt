@@ -3,7 +3,6 @@ package com.danilkharytonov.foregroundserviceandbroadcastreceiver.services
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
-import androidx.core.view.ContentInfoCompat.Flags
 import com.danilkharytonov.foregroundserviceandbroadcastreceiver.MainActivity
 import com.danilkharytonov.foregroundserviceandbroadcastreceiver.MainActivity.Companion.APP_NOTIFICATION_CLICK
 import com.danilkharytonov.foregroundserviceandbroadcastreceiver.MainActivity.Companion.FRAGMENT_ID
