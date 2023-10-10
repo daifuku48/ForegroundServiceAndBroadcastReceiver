@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.edit
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -41,15 +42,15 @@ class ListItemFragment: Fragment() {
 
     private fun initItemList(){
         val layoutManager = LinearLayoutManager(requireContext())
-        val adapter = ItemListAdapter(object : ItemListAdapter.Listener {
-            override fun onClickItem(item: Item) {
-                val sharedPreferences = requireContext().getSharedPreferences(SHARED_PREF, Context.MODE_PRIVATE)
-                sharedPreferences.edit {
-                    putInt(ITEM_KEY_ID, item.id)
-                }
-                findNavController().navigate(R.id.action_listItemFragment_to_itemFragment)
+        val adapter = ItemListAdapter{ item ->
+            val sharedPreferences = requireContext().getSharedPreferences(SHARED_PREF, Context.MODE_PRIVATE)
+            sharedPreferences.edit {
+                putInt(ITEM_KEY_ID, item.id)
             }
-        })
+            findNavController().navigate(R.id.action_listItemFragment_to_itemFragment, bundleOf(
+                ITEM_KEY_ID to item.id
+            ))
+        }
         adapter.submitList(Items.getList())
         binding.list.layoutManager = layoutManager
         binding.list.adapter = adapter
@@ -59,12 +60,14 @@ class ListItemFragment: Fragment() {
         val intent = activity?.intent
         val fragmentId = intent?.getIntExtra(FRAGMENT_ID, 0)
         if (fragmentId == ITEM_FRAGMENT_ID){
-            findNavController().navigate(R.id.action_listItemFragment_to_itemFragment)
+            findNavController().navigate(R.id.action_listItemFragment_to_itemFragment, bundleOf(
+                ITEM_KEY_ID to requireContext().getSharedPreferences(SHARED_PREF, Context.MODE_PRIVATE).getInt(ITEM_KEY_ID, 0)
+            ))
         }
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
+    override fun onDestroyView() {
+        super.onDestroyView()
         _binding = null
     }
 }

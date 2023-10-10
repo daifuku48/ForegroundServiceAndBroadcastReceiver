@@ -34,20 +34,19 @@ class ItemFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.backButton.setOnClickListener {
-            Log.d("back", "back")
-            findNavController().navigate(R.id.action_itemFragment_to_listItemFragment)
+            findNavController().popBackStack()
         }
-
-        val sharedPreferences = requireContext().getSharedPreferences(SHARED_PREF, Context.MODE_PRIVATE)
-        val id = sharedPreferences.getInt(ITEM_KEY_ID, UNDEFINED_VALUE)
-        val item = Items.getItemById(id)
-        binding.itemId.text = getString(R.string.id, item.id)
-        binding.itemName.text = getString(R.string.name, item.name)
-        binding.itemDescription.text = getString(R.string.description, item.description)
+        val id = arguments?.getInt(ITEM_KEY_ID)
+        if (id != null){
+            val item = Items.getItemById(id)
+            binding.itemId.text = getString(R.string.id, item.id)
+            binding.itemName.text = getString(R.string.name, item.name)
+            binding.itemDescription.text = getString(R.string.description, item.description)
+        }
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
+    override fun onDestroyView() {
+        super.onDestroyView()
         _binding = null
     }
 }

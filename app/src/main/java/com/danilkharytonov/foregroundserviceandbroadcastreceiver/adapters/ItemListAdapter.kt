@@ -10,34 +10,31 @@ import com.danilkharytonov.foregroundserviceandbroadcastreceiver.databinding.Ite
 import com.danilkharytonov.foregroundserviceandbroadcastreceiver.model.Item
 
 
-class ItemListAdapter(private val listener: Listener) :
-    ListAdapter<Item, ItemListAdapter.ViewHolder>(ItemCallback),
-    View.OnClickListener {
-
-    override fun onClick(v: View) {
-        val item = v.tag as Item
-        when (v.id) {
-            else -> listener.onClickItem(item)
-        }
-    }
+class ItemListAdapter(private val binder: (Item) -> Unit) :
+    ListAdapter<Item, ItemListAdapter.ViewHolder>(ItemCallback){
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val binding = ItemListBinding.inflate(inflater, parent, false)
-        binding.root.setOnClickListener(this)
         return ViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = getItem(position)
-        holder.binding.itemName.text = item.name
-
-        holder.itemView.tag = item
+        holder.bind(item, binder)
     }
 
     class ViewHolder(
-        val binding: ItemListBinding
-    ) : RecyclerView.ViewHolder(binding.root)
+        private val binding: ItemListBinding
+    ) : RecyclerView.ViewHolder(binding.root){
+
+        fun bind(item:Item, onClick:(Item) -> Unit){
+            binding.itemName.text = item.name
+            binding.root.setOnClickListener {
+                onClick(item)
+            }
+        }
+    }
 
     object ItemCallback : DiffUtil.ItemCallback<Item>() {
         override fun areItemsTheSame(oldItem: Item, newItem: Item): Boolean {
@@ -47,9 +44,5 @@ class ItemListAdapter(private val listener: Listener) :
         override fun areContentsTheSame(oldItem: Item, newItem: Item): Boolean {
             return oldItem == newItem
         }
-    }
-
-    interface Listener {
-        fun onClickItem(item: Item)
     }
 }
