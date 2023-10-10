@@ -2,9 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -16,7 +17,10 @@
         android:theme="@style/Theme.ForegroundServiceAndBroadcastReceiver"
         tools:targetApi="31">
         <activity
-            android:name=".MainActivity"
+            android:name=".ItemViewActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ItemListActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -24,10 +28,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <service android:name="com.danilkharytonov.foregroundserviceandbroadcastreceiver.services.ItemForegroundService" />
-        <receiver android:name=".services.ItemBroadcastReceiver" android:exported="false">
+
+        <service android:name=".services.ItemForegroundService" />
+
+        <receiver
+            android:name=".services.ItemBroadcastReceiver"
+            android:exported="false">
             <intent-filter>
-                <action android:name="on" />
+                <action android:name="APP_NOTIFICATION_CLICK" />
             </intent-filter>
         </receiver>
     </application>

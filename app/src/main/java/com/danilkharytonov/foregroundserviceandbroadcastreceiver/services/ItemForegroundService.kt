@@ -3,9 +3,10 @@ package com.danilkharytonov.foregroundserviceandbroadcastreceiver.services
 import android.Manifest
 import android.app.NotificationChannel
 import android.app.NotificationManager
+import android.app.PendingIntent
 import android.app.Service
-import android.content.Context
 import android.content.Intent
+import android.content.IntentFilter
 import android.content.pm.PackageManager
 import android.os.Build
 import android.os.IBinder
@@ -13,12 +14,11 @@ import android.util.Log
 import androidx.core.app.ActivityCompat
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
-import com.danilkharytonov.foregroundserviceandbroadcastreceiver.ListItemsFragment.Companion.SHARED_PREF
 import com.danilkharytonov.foregroundserviceandbroadcastreceiver.R
 
 
 class ItemForegroundService : Service() {
-
+    private val broadcastReceiver = ItemBroadcastReceiver()
     override fun onCreate() {
         super.onCreate()
         Log.d("Service", "Service created")
@@ -27,10 +27,17 @@ class ItemForegroundService : Service() {
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         Log.d("Service", "Service started")
 
+        val notificationIntent = Intent("APP_NOTIFICATION_CLICK")
+        val intentFilter = IntentFilter("APP_NOTIFICATION_CLICK")
+        registerReceiver(broadcastReceiver, intentFilter)
+        val contentIntent = PendingIntent.getBroadcast(
+            this, 0,
+            notificationIntent, PendingIntent.FLAG_MUTABLE)
         val builder = NotificationCompat.Builder(this, "channel_id")
             .setSmallIcon(R.drawable.ic_launcher_foreground)
             .setContentTitle("Notification")
             .setContentText("Foreground Application")
+            .setContentIntent(contentIntent)
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val channel = NotificationChannel(

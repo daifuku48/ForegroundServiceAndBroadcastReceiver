@@ -1,62 +1,50 @@
 package com.danilkharytonov.foregroundserviceandbroadcastreceiver
 
-import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
-import android.content.SharedPreferences
+import android.content.IntentFilter
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import androidx.core.os.bundleOf
-import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.danilkharytonov.foregroundserviceandbroadcastreceiver.adapters.ItemRecyclerAdapter
-import com.danilkharytonov.foregroundserviceandbroadcastreceiver.databinding.ListItemFragmentBinding
+import com.danilkharytonov.foregroundserviceandbroadcastreceiver.databinding.ActivityMainBinding
 import com.danilkharytonov.foregroundserviceandbroadcastreceiver.model.Item
 import com.danilkharytonov.foregroundserviceandbroadcastreceiver.services.ItemBroadcastReceiver
 import com.danilkharytonov.foregroundserviceandbroadcastreceiver.services.ItemForegroundService
 
-class ListItemsFragment : Fragment() {
-    private var _binding : ListItemFragmentBinding? = null
+class ItemListActivity : AppCompatActivity() {
+
+    private var _binding: ActivityMainBinding? = null
     private val binding
         get() = _binding!!
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        _binding = ListItemFragmentBinding.inflate(inflater)
-        return _binding?.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        _binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(_binding?.root)
         val array = Array(20) {
                 id -> Item(id, "item $id", "description of item $id")
         }
-
-        val layoutManager = LinearLayoutManager(requireContext())
+        val filter = IntentFilter("APP_NOTIFICATION_CLICK")
+        registerReceiver(ItemBroadcastReceiver(), filter)
+        val layoutManager = LinearLayoutManager(this)
         val adapter = ItemRecyclerAdapter(array)
+
         adapter.onItemClick = {
-            item ->
-            findNavController().navigate(R.id.action_listItemsFragment_to_itemViewFragment,
-                bundleOf(
-                    ITEM_KEY_ID to item.id,
-                    ITEM_KEY_NAME to item.name,
-                    ITEM_KEY_DESCRIPTION to item.description
-                ))
-            val sharedPreferences = requireContext().getSharedPreferences(SHARED_PREF, Context.MODE_PRIVATE)
+                item ->
+            val intent = Intent(this, ItemViewActivity::class.java)
+            val sharedPreferences = getSharedPreferences(SHARED_PREF, Context.MODE_PRIVATE)
             val editor = sharedPreferences.edit()
             editor.putInt(ITEM_KEY_ID, item.id)
             editor.putString(ITEM_KEY_NAME, item.name)
             editor.putString(ITEM_KEY_DESCRIPTION, item.description)
             editor.apply()
+            startActivity(intent)
         }
+
         binding.recyclerList.layoutManager = layoutManager
         binding.recyclerList.adapter = adapter
+        startService(Intent(this, ItemForegroundService::class.java))
     }
 
     companion object {
@@ -69,5 +57,6 @@ class ListItemsFragment : Fragment() {
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
+        stopService(Intent(this, ItemForegroundService::class.java))
     }
 }
