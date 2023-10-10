@@ -30,7 +30,7 @@ class ItemBroadcastReceiver : BroadcastReceiver() {
             } else {
                 context.startActivity(Intent(context, MainActivity::class.java).apply {
                     putExtra(FRAGMENT_ID, ITEM_FRAGMENT_ID)
-                }.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK))
+                })
             }
         }
     }
