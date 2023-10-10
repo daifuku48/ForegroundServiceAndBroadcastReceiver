@@ -3,6 +3,7 @@ package com.danilkharytonov.foregroundserviceandbroadcastreceiver.services
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
+import androidx.core.view.ContentInfoCompat.Flags
 import com.danilkharytonov.foregroundserviceandbroadcastreceiver.MainActivity
 import com.danilkharytonov.foregroundserviceandbroadcastreceiver.MainActivity.Companion.APP_NOTIFICATION_CLICK
 import com.danilkharytonov.foregroundserviceandbroadcastreceiver.MainActivity.Companion.FRAGMENT_ID
@@ -29,7 +30,7 @@ class ItemBroadcastReceiver : BroadcastReceiver() {
             } else {
                 context.startActivity(Intent(context, MainActivity::class.java).apply {
                     putExtra(FRAGMENT_ID, ITEM_FRAGMENT_ID)
-                })
+                }.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK))
             }
         }
     }

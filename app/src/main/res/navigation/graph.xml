@@ -19,5 +19,9 @@
         android:id="@+id/itemFragment"
         android:name="com.danilkharytonov.foregroundserviceandbroadcastreceiver.fragments.ItemFragment"
         android:label="fragment_item"
-        tools:layout="@layout/fragment_item" />
+        tools:layout="@layout/fragment_item" >
+        <action
+            android:id="@+id/action_itemFragment_to_listItemFragment"
+            app:destination="@id/listItemFragment" />
+    </fragment>
 </navigation>
