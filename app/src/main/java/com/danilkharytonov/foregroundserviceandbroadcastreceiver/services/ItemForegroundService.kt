@@ -28,8 +28,6 @@ class ItemForegroundService : Service() {
         Log.d("Service", "Service started")
 
         val notificationIntent = Intent("APP_NOTIFICATION_CLICK")
-        val intentFilter = IntentFilter("APP_NOTIFICATION_CLICK")
-        registerReceiver(broadcastReceiver, intentFilter)
         val contentIntent = PendingIntent.getBroadcast(
             this, 0,
             notificationIntent, PendingIntent.FLAG_MUTABLE)
