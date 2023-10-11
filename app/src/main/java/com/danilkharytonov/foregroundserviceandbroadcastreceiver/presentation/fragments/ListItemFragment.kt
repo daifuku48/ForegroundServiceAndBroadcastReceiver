@@ -60,7 +60,7 @@ class ListItemFragment : Fragment(), ItemListFragmentView {
         val fragmentId = intent?.getIntExtra(FRAGMENT_ID, 0)
         if (fragmentId == ITEM_FRAGMENT_ID){
             findNavController().navigate(R.id.action_listItemFragment_to_itemFragment, bundleOf(
-                ITEM_KEY_ID to requireContext().getSharedPreferences(SHARED_PREF, Context.MODE_PRIVATE).getInt(ITEM_KEY_ID, 0)
+                ITEM_KEY_ID to presenter.getItemIdFromSharedPreferences()
             ))
         }
     }
@@ -71,12 +71,8 @@ class ListItemFragment : Fragment(), ItemListFragmentView {
     }
 
     override fun showItemList(items: Items) {
-        val adapter = ItemListAdapter{item ->
+        val adapter = ItemListAdapter{ item ->
             presenter.saveId(item.id)
-            val sharedPreferences = requireContext().getSharedPreferences(SHARED_PREF, Context.MODE_PRIVATE)
-            sharedPreferences.edit {
-                putInt(ITEM_KEY_ID, item.id)
-            }
             findNavController().navigate(R.id.action_listItemFragment_to_itemFragment, bundleOf(
                 ITEM_KEY_ID to item.id
             ))

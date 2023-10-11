@@ -11,6 +11,7 @@ import com.danilkharytonov.foregroundserviceandbroadcastreceiver.R
 import com.danilkharytonov.foregroundserviceandbroadcastreceiver.data.model.Item
 import com.danilkharytonov.foregroundserviceandbroadcastreceiver.databinding.FragmentItemBinding
 import com.danilkharytonov.foregroundserviceandbroadcastreceiver.data.model.Items
+import com.danilkharytonov.foregroundserviceandbroadcastreceiver.presentation.presenters.ItemFragmentPresenter
 import com.danilkharytonov.foregroundserviceandbroadcastreceiver.presentation.presenters.ItemFragmentPresenterImpl
 import com.danilkharytonov.foregroundserviceandbroadcastreceiver.presentation.presenters.ListItemFragmentPresenter
 import com.danilkharytonov.foregroundserviceandbroadcastreceiver.presentation.views.ItemFragmentView
@@ -19,8 +20,8 @@ import javax.inject.Inject
 
 
 @AndroidEntryPoint
-class ItemFragment : Fragment(), ItemFragmentView {
-    @Inject lateinit var presenter: ListItemFragmentPresenter
+class ItemFragment : Fragment(), ItemFragmentView{
+    @Inject lateinit var presenter: ItemFragmentPresenter
     private var _binding: FragmentItemBinding? = null
     private val binding
         get() = _binding!!
@@ -42,9 +43,8 @@ class ItemFragment : Fragment(), ItemFragmentView {
         }
         val id = arguments?.getInt(ITEM_KEY_ID)
         if (id != null){
-            val item = Items.getItemById(id)
+            presenter.getItemById(id)
         }
-        presenter.getItemList()
     }
 
     override fun showItem(item: Item) {
@@ -57,6 +57,4 @@ class ItemFragment : Fragment(), ItemFragmentView {
         super.onDestroyView()
         _binding = null
     }
-
-
 }

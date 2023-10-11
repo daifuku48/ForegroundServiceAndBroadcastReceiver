@@ -2,7 +2,9 @@ package com.danilkharytonov.foregroundserviceandbroadcastreceiver.di
 
 import com.danilkharytonov.foregroundserviceandbroadcastreceiver.domain.repository.ItemsRepository
 import com.danilkharytonov.foregroundserviceandbroadcastreceiver.domain.use_cases.GetItemByIdUseCase
+import com.danilkharytonov.foregroundserviceandbroadcastreceiver.domain.use_cases.GetItemIdFromSharedPreferencesUseCase
 import com.danilkharytonov.foregroundserviceandbroadcastreceiver.domain.use_cases.GetListItemUseCase
+import com.danilkharytonov.foregroundserviceandbroadcastreceiver.domain.use_cases.SaveItemIdUseCase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -23,5 +25,17 @@ object DomainModule {
     @Provides
     fun providesGetItemByIdUseCase(itemsRepository: ItemsRepository) : GetItemByIdUseCase {
         return GetItemByIdUseCase(itemsRepository)
+    }
+
+    @Provides
+    fun providesGetItemIdFromSharedPreferencesUseCase(
+        itemsRepository: ItemsRepository
+    ) : GetItemIdFromSharedPreferencesUseCase {
+        return GetItemIdFromSharedPreferencesUseCase(itemsRepository)
+    }
+
+    @Provides
+    fun providesSaveItemByIdUseCase(itemsRepository: ItemsRepository) : SaveItemIdUseCase{
+        return SaveItemIdUseCase(itemsRepository)
     }
 }

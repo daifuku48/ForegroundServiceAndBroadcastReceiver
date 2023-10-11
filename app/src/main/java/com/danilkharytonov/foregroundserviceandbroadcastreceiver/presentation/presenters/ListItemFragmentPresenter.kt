@@ -3,4 +3,5 @@ package com.danilkharytonov.foregroundserviceandbroadcastreceiver.presentation.p
 interface ListItemFragmentPresenter {
     fun getItemList()
     fun saveId(id: Int)
+    fun getItemIdFromSharedPreferences() : Int
 }
