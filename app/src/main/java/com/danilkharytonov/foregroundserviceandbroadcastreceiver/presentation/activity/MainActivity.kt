@@ -1,4 +1,4 @@
-package com.danilkharytonov.foregroundserviceandbroadcastreceiver
+package com.danilkharytonov.foregroundserviceandbroadcastreceiver.presentation.activity
 
 import android.content.Intent
 import android.content.IntentFilter

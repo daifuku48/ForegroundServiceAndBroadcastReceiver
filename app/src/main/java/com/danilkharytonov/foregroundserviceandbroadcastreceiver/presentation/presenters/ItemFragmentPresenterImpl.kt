@@ -10,7 +10,7 @@ class ItemFragmentPresenterImpl @Inject constructor(
     private val itemFragmentView: ItemFragmentView
 ): ItemFragmentPresenter {
     override fun getItemById(id: Int) {
-        val id = getItemByIdUseCase.execute(id)
-        itemFragmentView.showItem(id)
+        val item = getItemByIdUseCase.execute(id)
+        itemFragmentView.showItem(item)
     }
 }

@@ -2,13 +2,11 @@ package com.danilkharytonov.foregroundserviceandbroadcastreceiver.data.repositor
 
 import android.content.Context
 import androidx.core.content.edit
-import com.danilkharytonov.foregroundserviceandbroadcastreceiver.MainActivity.Companion.ITEM_KEY_ID
-import com.danilkharytonov.foregroundserviceandbroadcastreceiver.MainActivity.Companion.SHARED_PREF
-import com.danilkharytonov.foregroundserviceandbroadcastreceiver.app.App
+import com.danilkharytonov.foregroundserviceandbroadcastreceiver.presentation.activity.MainActivity.Companion.ITEM_KEY_ID
+import com.danilkharytonov.foregroundserviceandbroadcastreceiver.presentation.activity.MainActivity.Companion.SHARED_PREF
 import com.danilkharytonov.foregroundserviceandbroadcastreceiver.data.model.Item
 import com.danilkharytonov.foregroundserviceandbroadcastreceiver.data.model.Items
 import com.danilkharytonov.foregroundserviceandbroadcastreceiver.domain.repository.ItemsRepository
-import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 
 class ItemRepositoryImpl @Inject constructor(
