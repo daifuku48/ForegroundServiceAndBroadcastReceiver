@@ -1,23 +1,19 @@
 package com.danilkharytonov.foregroundserviceandbroadcastreceiver.di
 
-import com.danilkharytonov.foregroundserviceandbroadcastreceiver.domain.use_cases.GetItemByIdUseCase
-import com.danilkharytonov.foregroundserviceandbroadcastreceiver.domain.use_cases.GetItemIdFromSharedPreferencesUseCase
-import com.danilkharytonov.foregroundserviceandbroadcastreceiver.domain.use_cases.GetListItemUseCase
-import com.danilkharytonov.foregroundserviceandbroadcastreceiver.domain.use_cases.SaveItemIdUseCase
-import com.danilkharytonov.foregroundserviceandbroadcastreceiver.presentation.fragments.ListItemFragment
-import com.danilkharytonov.foregroundserviceandbroadcastreceiver.presentation.presenters.ItemFragmentPresenter
-import com.danilkharytonov.foregroundserviceandbroadcastreceiver.presentation.presenters.ItemFragmentPresenterImpl
-import com.danilkharytonov.foregroundserviceandbroadcastreceiver.presentation.presenters.ListItemFragmentPresenter
-import com.danilkharytonov.foregroundserviceandbroadcastreceiver.presentation.presenters.ListItemFragmentPresenterImpl
-import com.danilkharytonov.foregroundserviceandbroadcastreceiver.presentation.views.ItemFragmentView
-import com.danilkharytonov.foregroundserviceandbroadcastreceiver.presentation.views.ItemListFragmentView
-import dagger.Binds
+import com.danilkharytonov.foregroundserviceandbroadcastreceiver.domain.use_cases.item_view.GetItemByIdUseCase
+import com.danilkharytonov.foregroundserviceandbroadcastreceiver.domain.use_cases.list_view.GetItemIdFromSharedPreferencesUseCase
+import com.danilkharytonov.foregroundserviceandbroadcastreceiver.domain.use_cases.list_view.GetListItemUseCase
+import com.danilkharytonov.foregroundserviceandbroadcastreceiver.domain.use_cases.list_view.SaveItemIdUseCase
+import com.danilkharytonov.foregroundserviceandbroadcastreceiver.presentation.list_view.presenters.ItemFragmentPresenter
+import com.danilkharytonov.foregroundserviceandbroadcastreceiver.presentation.list_view.presenters.ItemFragmentPresenterImpl
+import com.danilkharytonov.foregroundserviceandbroadcastreceiver.presentation.item_view.presenters.ListItemFragmentPresenter
+import com.danilkharytonov.foregroundserviceandbroadcastreceiver.presentation.item_view.presenters.ListItemFragmentPresenterImpl
+import com.danilkharytonov.foregroundserviceandbroadcastreceiver.presentation.list_view.views.ItemFragmentView
+import com.danilkharytonov.foregroundserviceandbroadcastreceiver.presentation.item_view.views.ItemListFragmentView
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.FragmentComponent
-import dagger.hilt.components.SingletonComponent
-import javax.inject.Singleton
 
 
 @Module
@@ -29,13 +25,11 @@ object PresenterModule {
         getListItemUseCase: GetListItemUseCase,
         saveItemIdUseCase: SaveItemIdUseCase,
         getItemIdFromSharedPreferencesUseCase: GetItemIdFromSharedPreferencesUseCase,
-        itemListFragmentView: ItemListFragmentView
     ) : ListItemFragmentPresenter {
         return ListItemFragmentPresenterImpl(
             getListItemUseCase = getListItemUseCase,
             saveItemIdUseCase = saveItemIdUseCase,
             getItemIdFromSharedPreferencesUseCase = getItemIdFromSharedPreferencesUseCase,
-            itemListFragmentView =  itemListFragmentView
         )
     }
 
@@ -46,7 +40,6 @@ object PresenterModule {
     ) : ItemFragmentPresenter {
         return ItemFragmentPresenterImpl(
             getItemByIdUseCase = getItemByIdUseCase,
-            itemFragmentView = itemFragmentView
         )
     }
 

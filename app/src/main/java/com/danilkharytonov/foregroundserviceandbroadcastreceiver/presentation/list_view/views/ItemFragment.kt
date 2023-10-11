@@ -1,4 +1,4 @@
-package com.danilkharytonov.foregroundserviceandbroadcastreceiver.presentation.fragments
+package com.danilkharytonov.foregroundserviceandbroadcastreceiver.presentation.list_view.views
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,15 +10,16 @@ import com.danilkharytonov.foregroundserviceandbroadcastreceiver.presentation.ac
 import com.danilkharytonov.foregroundserviceandbroadcastreceiver.R
 import com.danilkharytonov.foregroundserviceandbroadcastreceiver.data.model.Item
 import com.danilkharytonov.foregroundserviceandbroadcastreceiver.databinding.FragmentItemBinding
-import com.danilkharytonov.foregroundserviceandbroadcastreceiver.presentation.presenters.ItemFragmentPresenter
-import com.danilkharytonov.foregroundserviceandbroadcastreceiver.presentation.views.ItemFragmentView
+import com.danilkharytonov.foregroundserviceandbroadcastreceiver.presentation.list_view.presenters.ItemFragmentPresenter
+import com.danilkharytonov.foregroundserviceandbroadcastreceiver.presentation.list_view.presenters.ItemFragmentPresenterImpl
+import com.danilkharytonov.foregroundserviceandbroadcastreceiver.presentation.list_view.views.ItemFragmentView
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 
 @AndroidEntryPoint
-class ItemFragment : Fragment(), ItemFragmentView{
-    @Inject lateinit var presenter: ItemFragmentPresenter
+class ItemFragment : Fragment(), ItemFragmentView {
+    @Inject lateinit var presenter: ItemFragmentPresenterImpl
     private var _binding: FragmentItemBinding? = null
     private val binding
         get() = _binding!!
@@ -34,7 +35,7 @@ class ItemFragment : Fragment(), ItemFragmentView{
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        presenter.attach(this)
         binding.backButton.setOnClickListener {
             findNavController().popBackStack()
         }
@@ -52,6 +53,7 @@ class ItemFragment : Fragment(), ItemFragmentView{
 
     override fun onDestroyView() {
         super.onDestroyView()
+        presenter.detach()
         _binding = null
     }
 }

@@ -1,4 +1,4 @@
-package com.danilkharytonov.foregroundserviceandbroadcastreceiver.presentation.fragments
+package com.danilkharytonov.foregroundserviceandbroadcastreceiver.presentation.item_view.views
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -12,13 +12,14 @@ import com.danilkharytonov.foregroundserviceandbroadcastreceiver.presentation.ac
 import com.danilkharytonov.foregroundserviceandbroadcastreceiver.presentation.activity.MainActivity.Companion.ITEM_FRAGMENT_ID
 import com.danilkharytonov.foregroundserviceandbroadcastreceiver.presentation.activity.MainActivity.Companion.ITEM_KEY_ID
 import com.danilkharytonov.foregroundserviceandbroadcastreceiver.R
-import com.danilkharytonov.foregroundserviceandbroadcastreceiver.presentation.adapters.ItemListAdapter
+import com.danilkharytonov.foregroundserviceandbroadcastreceiver.presentation.item_view.adapters.ItemListAdapter
 import com.danilkharytonov.foregroundserviceandbroadcastreceiver.databinding.FragmentListItemBinding
 import com.danilkharytonov.foregroundserviceandbroadcastreceiver.data.model.Items
-import com.danilkharytonov.foregroundserviceandbroadcastreceiver.presentation.presenters.ListItemFragmentPresenterImpl
-import com.danilkharytonov.foregroundserviceandbroadcastreceiver.presentation.views.ItemListFragmentView
+import com.danilkharytonov.foregroundserviceandbroadcastreceiver.presentation.item_view.presenters.ListItemFragmentPresenterImpl
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
+
+
 
 
 @AndroidEntryPoint
@@ -40,6 +41,7 @@ class ListItemFragment : Fragment(), ItemListFragmentView {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        presenter.attach(this)
         initItemList()
         checkIntentForBroadCastReceiver()
     }
@@ -62,6 +64,7 @@ class ListItemFragment : Fragment(), ItemListFragmentView {
 
     override fun onDestroyView() {
         super.onDestroyView()
+        presenter.detach()
         _binding = null
     }
 

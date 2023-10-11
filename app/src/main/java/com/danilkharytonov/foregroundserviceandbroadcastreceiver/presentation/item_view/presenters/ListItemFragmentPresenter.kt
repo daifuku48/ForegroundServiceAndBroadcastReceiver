@@ -1,4 +1,4 @@
-package com.danilkharytonov.foregroundserviceandbroadcastreceiver.presentation.presenters
+package com.danilkharytonov.foregroundserviceandbroadcastreceiver.presentation.item_view.presenters
 
 interface ListItemFragmentPresenter {
     fun getItemList()

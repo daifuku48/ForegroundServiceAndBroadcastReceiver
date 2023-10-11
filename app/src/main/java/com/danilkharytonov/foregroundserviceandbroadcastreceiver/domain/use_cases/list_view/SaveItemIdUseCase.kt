@@ -1,4 +1,4 @@
-package com.danilkharytonov.foregroundserviceandbroadcastreceiver.domain.use_cases
+package com.danilkharytonov.foregroundserviceandbroadcastreceiver.domain.use_cases.list_view
 
 import com.danilkharytonov.foregroundserviceandbroadcastreceiver.domain.repository.ItemsRepository
 import javax.inject.Inject

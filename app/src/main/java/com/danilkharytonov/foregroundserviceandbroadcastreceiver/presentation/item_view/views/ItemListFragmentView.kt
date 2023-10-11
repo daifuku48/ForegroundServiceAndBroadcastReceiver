@@ -1,4 +1,4 @@
-package com.danilkharytonov.foregroundserviceandbroadcastreceiver.presentation.views
+package com.danilkharytonov.foregroundserviceandbroadcastreceiver.presentation.item_view.views
 
 import com.danilkharytonov.foregroundserviceandbroadcastreceiver.data.model.Items
 

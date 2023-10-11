@@ -1,16 +1,14 @@
 package com.danilkharytonov.foregroundserviceandbroadcastreceiver.di
 
 import com.danilkharytonov.foregroundserviceandbroadcastreceiver.domain.repository.ItemsRepository
-import com.danilkharytonov.foregroundserviceandbroadcastreceiver.domain.use_cases.GetItemByIdUseCase
-import com.danilkharytonov.foregroundserviceandbroadcastreceiver.domain.use_cases.GetItemIdFromSharedPreferencesUseCase
-import com.danilkharytonov.foregroundserviceandbroadcastreceiver.domain.use_cases.GetListItemUseCase
-import com.danilkharytonov.foregroundserviceandbroadcastreceiver.domain.use_cases.SaveItemIdUseCase
+import com.danilkharytonov.foregroundserviceandbroadcastreceiver.domain.use_cases.item_view.GetItemByIdUseCase
+import com.danilkharytonov.foregroundserviceandbroadcastreceiver.domain.use_cases.list_view.GetItemIdFromSharedPreferencesUseCase
+import com.danilkharytonov.foregroundserviceandbroadcastreceiver.domain.use_cases.list_view.GetListItemUseCase
+import com.danilkharytonov.foregroundserviceandbroadcastreceiver.domain.use_cases.list_view.SaveItemIdUseCase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
-import dagger.hilt.android.components.FragmentComponent
 import dagger.hilt.components.SingletonComponent
-import javax.inject.Singleton
 
 
 @Module
@@ -35,7 +33,7 @@ object DomainModule {
     }
 
     @Provides
-    fun providesSaveItemByIdUseCase(itemsRepository: ItemsRepository) : SaveItemIdUseCase{
+    fun providesSaveItemByIdUseCase(itemsRepository: ItemsRepository) : SaveItemIdUseCase {
         return SaveItemIdUseCase(itemsRepository)
     }
 }

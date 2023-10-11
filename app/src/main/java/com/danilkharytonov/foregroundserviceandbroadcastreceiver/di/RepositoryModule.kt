@@ -7,6 +7,7 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.FragmentComponent
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
@@ -14,7 +15,7 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object RepositoryModule {
     @Provides
-    fun provideItemRepository(context: Context) : ItemsRepository{
+    fun provideItemRepository(@ApplicationContext context: Context) : ItemsRepository{
         return ItemRepositoryImpl(
             context = context
         )
