@@ -1,4 +1,4 @@
-package com.danilkharytonov.foregroundserviceandbroadcastreceiver.services
+package com.danilkharytonov.foregroundserviceandbroadcastreceiver.presentation.services
 
 import android.Manifest
 import android.app.NotificationChannel

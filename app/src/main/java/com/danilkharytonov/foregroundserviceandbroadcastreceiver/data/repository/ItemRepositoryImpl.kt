@@ -1,0 +1,35 @@
+package com.danilkharytonov.foregroundserviceandbroadcastreceiver.data.repository
+
+import android.content.Context
+import androidx.core.content.edit
+import com.danilkharytonov.foregroundserviceandbroadcastreceiver.MainActivity.Companion.ITEM_KEY_ID
+import com.danilkharytonov.foregroundserviceandbroadcastreceiver.MainActivity.Companion.SHARED_PREF
+import com.danilkharytonov.foregroundserviceandbroadcastreceiver.app.App
+import com.danilkharytonov.foregroundserviceandbroadcastreceiver.data.model.Item
+import com.danilkharytonov.foregroundserviceandbroadcastreceiver.data.model.Items
+import com.danilkharytonov.foregroundserviceandbroadcastreceiver.domain.repository.ItemsRepository
+import dagger.hilt.android.qualifiers.ApplicationContext
+import javax.inject.Inject
+
+class ItemRepositoryImpl @Inject constructor(
+    private val context: Context
+): ItemsRepository {
+    override fun getItemList(): Items {
+        return Items
+    }
+
+    override fun getItemById(id: Int): Item {
+        return Items.getItemById(id)
+    }
+
+    override fun saveItemId(id: Int) {
+        context.getSharedPreferences(SHARED_PREF, Context.MODE_PRIVATE).edit {
+            putInt(ITEM_KEY_ID, id)
+        }
+    }
+
+    override fun getItemIdFromSharedPreferences(): Int {
+        val id = context.getSharedPreferences(SHARED_PREF, Context.MODE_PRIVATE).getInt(ITEM_KEY_ID, 0)
+        return id
+    }
+}

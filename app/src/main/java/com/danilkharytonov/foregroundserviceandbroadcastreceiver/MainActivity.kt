@@ -4,11 +4,16 @@ import android.content.Intent
 import android.content.IntentFilter
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.danilkharytonov.foregroundserviceandbroadcastreceiver.fragments.ListItemFragment
-import com.danilkharytonov.foregroundserviceandbroadcastreceiver.services.ItemBroadcastReceiver
-import com.danilkharytonov.foregroundserviceandbroadcastreceiver.services.ItemForegroundService
+import com.danilkharytonov.foregroundserviceandbroadcastreceiver.databinding.ActivityMainBinding
+import com.danilkharytonov.foregroundserviceandbroadcastreceiver.presentation.services.ItemBroadcastReceiver
+import com.danilkharytonov.foregroundserviceandbroadcastreceiver.presentation.services.ItemForegroundService
+import dagger.hilt.android.AndroidEntryPoint
 
+
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
+
+    private var _binding : ActivityMainBinding? = null
 
     companion object {
         const val ITEM_KEY_ID = "ITEM_KEY_ID"
@@ -24,7 +29,8 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        _binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(_binding?.root)
         startServiceAndBroadcastReceiver()
     }
 
