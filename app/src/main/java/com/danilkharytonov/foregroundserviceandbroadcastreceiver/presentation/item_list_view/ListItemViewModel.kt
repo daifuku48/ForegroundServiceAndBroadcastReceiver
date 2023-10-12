@@ -31,9 +31,7 @@ class ListItemViewModel @Inject constructor(
 
     private fun fetchItems(){
         val items = getListItemUseCase.execute()
-        viewModelScope.launch {
-            _itemList.emit(items.getList())
-        }
+        _itemList.value = items.getList()
     }
 
     fun saveItemId(id: Int){
