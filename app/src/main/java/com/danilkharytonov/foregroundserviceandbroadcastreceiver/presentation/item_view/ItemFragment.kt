@@ -35,7 +35,7 @@ class ItemFragment : Fragment() {
             findNavController().popBackStack()
         }
         val id = arguments?.getInt(ITEM_KEY_ID)
-        if (id != null){
+        if (id != null) {
             viewModel.sendEvent(ItemViewEvent.LoadItemByIdEvent(id))
         }
 

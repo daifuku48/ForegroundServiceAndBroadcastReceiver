@@ -13,7 +13,7 @@ import dagger.hilt.components.SingletonComponent
 @InstallIn(SingletonComponent::class)
 object RepositoryModule {
     @Provides
-    fun provideItemRepository(@ApplicationContext context: Context) : ItemsRepository {
+    fun provideItemRepository(@ApplicationContext context: Context): ItemsRepository {
         return ItemRepositoryImpl(
             context = context
         )

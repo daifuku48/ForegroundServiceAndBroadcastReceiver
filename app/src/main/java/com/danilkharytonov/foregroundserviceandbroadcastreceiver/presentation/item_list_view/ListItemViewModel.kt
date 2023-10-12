@@ -13,7 +13,7 @@ class ListItemViewModel @Inject constructor(
     private val getItemIdFromSharedPreferencesUseCase: GetItemIdFromSharedPreferencesUseCase,
     private val getListItemUseCase: GetListItemUseCase,
     private val saveItemIdUseCase: SaveItemIdUseCase
-): ViewModel() {
+) : ViewModel() {
 
     val state: MutableLiveData<ListItemState> = MutableLiveData(ListItemState())
 
@@ -37,7 +37,7 @@ class ListItemViewModel @Inject constructor(
         state.value?.items = getListItemUseCase.execute().getList()
     }
 
-    private fun saveItemId(id: Int){
+    private fun saveItemId(id: Int) {
         saveItemIdUseCase.execute(id)
     }
 

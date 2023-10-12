@@ -18,12 +18,12 @@ import com.danilkharytonov.foregroundserviceandbroadcastreceiver.presentation.it
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class ListItemFragment: Fragment() {
+class ListItemFragment : Fragment() {
     private var _binding: FragmentListItemBinding? = null
     private val binding
         get() = _binding!!
 
-    private val viewModel : ListItemViewModel by viewModels()
+    private val viewModel: ListItemViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -41,14 +41,16 @@ class ListItemFragment: Fragment() {
         checkIntentForBroadCastReceiver()
     }
 
-    private fun initItemList(){
+    private fun initItemList() {
         val layoutManager = LinearLayoutManager(requireContext())
-        val adapter = ItemListAdapter{ item ->
+        val adapter = ItemListAdapter { item ->
             //Save id in sharedPreferences
             viewModel.sendEvent(event = ListItemEvent.SaveItemId(item.id))
-            findNavController().navigate(R.id.action_listItemFragment_to_itemFragment, bundleOf(
-                ITEM_KEY_ID to item.id
-            ))
+            findNavController().navigate(
+                R.id.action_listItemFragment_to_itemFragment, bundleOf(
+                    ITEM_KEY_ID to item.id
+                )
+            )
         }
 
         viewModel.state.observe(viewLifecycleOwner) { state ->
@@ -59,14 +61,16 @@ class ListItemFragment: Fragment() {
         binding.list.adapter = adapter
     }
 
-    private fun checkIntentForBroadCastReceiver(){
+    private fun checkIntentForBroadCastReceiver() {
         val intent = activity?.intent
         val fragmentId = intent?.getIntExtra(FRAGMENT_ID, 0)
-        if (fragmentId == ITEM_FRAGMENT_ID){
+        if (fragmentId == ITEM_FRAGMENT_ID) {
             viewModel.sendEvent(event = ListItemEvent.LoadIdFromSharedPreferences)
-            findNavController().navigate(R.id.action_listItemFragment_to_itemFragment, bundleOf(
-                ITEM_KEY_ID to viewModel.state.value?.itemIdFromSharedPreferences
-            ))
+            findNavController().navigate(
+                R.id.action_listItemFragment_to_itemFragment, bundleOf(
+                    ITEM_KEY_ID to viewModel.state.value?.itemIdFromSharedPreferences
+                )
+            )
         }
     }
 

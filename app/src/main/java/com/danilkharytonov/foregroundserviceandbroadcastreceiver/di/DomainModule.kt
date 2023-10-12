@@ -15,24 +15,24 @@ import dagger.hilt.components.SingletonComponent
 object DomainModule {
 
     @Provides
-    fun providesGetListItemUseCase(itemsRepository: ItemsRepository) : GetListItemUseCase {
+    fun providesGetListItemUseCase(itemsRepository: ItemsRepository): GetListItemUseCase {
         return GetListItemUseCase(itemsRepository)
     }
 
     @Provides
-    fun providesGetItemByIdUseCase(itemsRepository: ItemsRepository) : GetItemByIdUseCase {
+    fun providesGetItemByIdUseCase(itemsRepository: ItemsRepository): GetItemByIdUseCase {
         return GetItemByIdUseCase(itemsRepository)
     }
 
     @Provides
     fun providesGetItemIdFromSharedPreferencesUseCase(
         itemsRepository: ItemsRepository
-    ) : GetItemIdFromSharedPreferencesUseCase {
+    ): GetItemIdFromSharedPreferencesUseCase {
         return GetItemIdFromSharedPreferencesUseCase(itemsRepository)
     }
 
     @Provides
-    fun providesSaveItemByIdUseCase(itemsRepository: ItemsRepository) : SaveItemIdUseCase {
+    fun providesSaveItemByIdUseCase(itemsRepository: ItemsRepository): SaveItemIdUseCase {
         return SaveItemIdUseCase(itemsRepository)
     }
 }

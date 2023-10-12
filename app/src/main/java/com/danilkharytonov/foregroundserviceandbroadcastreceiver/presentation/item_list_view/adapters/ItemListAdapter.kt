@@ -10,7 +10,7 @@ import com.danilkharytonov.foregroundserviceandbroadcastreceiver.databinding.Ite
 
 
 class ItemListAdapter(private val binder: (Item) -> Unit) :
-    ListAdapter<Item, ItemListAdapter.ViewHolder>(ItemCallback){
+    ListAdapter<Item, ItemListAdapter.ViewHolder>(ItemCallback) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
@@ -25,9 +25,9 @@ class ItemListAdapter(private val binder: (Item) -> Unit) :
 
     class ViewHolder(
         private val binding: ItemListBinding
-    ) : RecyclerView.ViewHolder(binding.root){
+    ) : RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(item: Item, onClick:(Item) -> Unit){
+        fun bind(item: Item, onClick: (Item) -> Unit) {
             binding.itemName.text = item.name
             binding.root.setOnClickListener {
                 onClick(item)

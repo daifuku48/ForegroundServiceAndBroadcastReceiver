@@ -11,7 +11,7 @@ import javax.inject.Inject
 
 class ItemRepositoryImpl @Inject constructor(
     private val context: Context
-): ItemsRepository {
+) : ItemsRepository {
     override fun getItemList(): Items {
         return Items
     }
@@ -27,7 +27,7 @@ class ItemRepositoryImpl @Inject constructor(
     }
 
     override fun getItemIdFromSharedPreferences(): Int {
-        val id = context.getSharedPreferences(SHARED_PREF, Context.MODE_PRIVATE).getInt(ITEM_KEY_ID, 0)
-        return id
+        return context.getSharedPreferences(SHARED_PREF, Context.MODE_PRIVATE)
+            .getInt(ITEM_KEY_ID, 0)
     }
 }

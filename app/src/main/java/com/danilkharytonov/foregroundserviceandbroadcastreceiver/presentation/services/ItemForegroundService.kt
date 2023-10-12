@@ -23,8 +23,10 @@ class ItemForegroundService : Service() {
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
 
         val notificationIntent = Intent(APP_NOTIFICATION_CLICK)
-        val contentIntent = PendingIntent.getBroadcast( this, 0,
-            notificationIntent, PendingIntent.FLAG_MUTABLE)
+        val contentIntent = PendingIntent.getBroadcast(
+            this, 0,
+            notificationIntent, PendingIntent.FLAG_MUTABLE
+        )
         val builder = NotificationCompat.Builder(this, CHANNEL_ID)
             .setSmallIcon(R.drawable.ic_launcher_foreground)
             .setContentTitle(getString(R.string.notification))

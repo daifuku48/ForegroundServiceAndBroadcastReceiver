@@ -9,19 +9,19 @@ import javax.inject.Inject
 @HiltViewModel
 class ItemViewModel @Inject constructor(
     private val getItemByIdUseCase: GetItemByIdUseCase
-): ViewModel() {
+) : ViewModel() {
 
     val state: MutableLiveData<ItemViewState> = MutableLiveData(ItemViewState())
 
-    fun sendEvent(event: ItemViewEvent){
-        when(event){
+    fun sendEvent(event: ItemViewEvent) {
+        when (event) {
             is ItemViewEvent.LoadItemByIdEvent -> {
                 loadItem(event.id)
             }
         }
     }
 
-    private fun loadItem(id: Int){
+    private fun loadItem(id: Int) {
         state.value?.item = getItemByIdUseCase.execute(id)
     }
 }

@@ -7,7 +7,7 @@ import javax.inject.Inject
 class GetListItemUseCase @Inject constructor(
     private val repository: ItemsRepository
 ) {
-    fun execute() : Items {
+    fun execute(): Items {
         return repository.getItemList()
     }
 }

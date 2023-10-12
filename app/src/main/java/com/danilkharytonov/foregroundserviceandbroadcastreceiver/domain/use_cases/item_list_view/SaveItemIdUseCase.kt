@@ -6,7 +6,7 @@ import javax.inject.Inject
 class SaveItemIdUseCase @Inject constructor(
     private val repository: ItemsRepository
 ) {
-    fun execute(id: Int){
+    fun execute(id: Int) {
         repository.saveItemId(id)
     }
 }

@@ -6,7 +6,7 @@ import javax.inject.Inject
 class GetItemIdFromSharedPreferencesUseCase @Inject constructor(
     private val repository: ItemsRepository
 ) {
-    fun execute() : Int {
+    fun execute(): Int {
         return repository.getItemIdFromSharedPreferences()
     }
 }
