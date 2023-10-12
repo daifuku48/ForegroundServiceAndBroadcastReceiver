@@ -1,6 +1,5 @@
 package com.danilkharytonov.foregroundserviceandbroadcastreceiver.presentation.item_list_view
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.danilkharytonov.foregroundserviceandbroadcastreceiver.domain.use_cases.item_list_view.GetItemIdFromSharedPreferencesUseCase
