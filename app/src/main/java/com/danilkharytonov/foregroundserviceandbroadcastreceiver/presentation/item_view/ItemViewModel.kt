@@ -3,7 +3,6 @@ package com.danilkharytonov.foregroundserviceandbroadcastreceiver.presentation.i
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.danilkharytonov.foregroundserviceandbroadcastreceiver.domain.use_cases.item_view.GetItemByIdUseCase
-import com.danilkharytonov.foregroundserviceandbroadcastreceiver.presentation.item_list_view.ListItemState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 

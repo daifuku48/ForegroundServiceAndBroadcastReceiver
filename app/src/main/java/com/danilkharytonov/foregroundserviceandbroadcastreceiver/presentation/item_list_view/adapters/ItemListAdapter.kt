@@ -5,8 +5,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.danilkharytonov.foregroundserviceandbroadcastreceiver.databinding.ItemListBinding
 import com.danilkharytonov.foregroundserviceandbroadcastreceiver.data.model.Item
+import com.danilkharytonov.foregroundserviceandbroadcastreceiver.databinding.ItemListBinding
 
 
 class ItemListAdapter(private val binder: (Item) -> Unit) :

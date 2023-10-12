@@ -7,10 +7,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import com.danilkharytonov.foregroundserviceandbroadcastreceiver.presentation.activity.MainActivity.Companion.ITEM_KEY_ID
 import com.danilkharytonov.foregroundserviceandbroadcastreceiver.R
 import com.danilkharytonov.foregroundserviceandbroadcastreceiver.databinding.FragmentItemBinding
-import com.danilkharytonov.foregroundserviceandbroadcastreceiver.data.model.Items
+import com.danilkharytonov.foregroundserviceandbroadcastreceiver.presentation.activity.MainActivity.Companion.ITEM_KEY_ID
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

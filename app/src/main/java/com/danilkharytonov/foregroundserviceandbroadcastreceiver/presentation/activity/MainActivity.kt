@@ -2,8 +2,8 @@ package com.danilkharytonov.foregroundserviceandbroadcastreceiver.presentation.a
 
 import android.content.Intent
 import android.content.IntentFilter
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.danilkharytonov.foregroundserviceandbroadcastreceiver.R
 import com.danilkharytonov.foregroundserviceandbroadcastreceiver.presentation.services.ItemBroadcastReceiver
 import com.danilkharytonov.foregroundserviceandbroadcastreceiver.presentation.services.ItemForegroundService

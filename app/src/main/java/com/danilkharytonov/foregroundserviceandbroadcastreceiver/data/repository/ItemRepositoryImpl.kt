@@ -1,7 +1,6 @@
 package com.danilkharytonov.foregroundserviceandbroadcastreceiver.data.repository
 
 import android.content.Context
-import android.provider.Settings.Global.putInt
 import androidx.core.content.edit
 import com.danilkharytonov.foregroundserviceandbroadcastreceiver.data.model.Item
 import com.danilkharytonov.foregroundserviceandbroadcastreceiver.data.model.Items
