@@ -17,7 +17,7 @@
         android:theme="@style/Theme.ForegroundServiceAndBroadcastReceiver"
         tools:targetApi="31">
         <activity
-            android:name=".MainActivity"
+            android:name=".presentation.activity.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -26,10 +26,10 @@
             </intent-filter>
         </activity>
 
-        <service android:name=".services.ItemForegroundService" />
+        <service android:name=".presentation.services.ItemForegroundService" />
 
         <receiver
-            android:name=".services.ItemBroadcastReceiver"
+            android:name=".presentation.services.ItemBroadcastReceiver"
             android:exported="false">
             <intent-filter>
                 <action android:name="APP_NOTIFICATION_CLICK" />

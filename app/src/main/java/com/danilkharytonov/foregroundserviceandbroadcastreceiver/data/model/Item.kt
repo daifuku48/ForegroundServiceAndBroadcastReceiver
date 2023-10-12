@@ -1,4 +1,4 @@
-package com.danilkharytonov.foregroundserviceandbroadcastreceiver.model
+package com.danilkharytonov.foregroundserviceandbroadcastreceiver.data.model
 
 data class Item(
     val id: Int,

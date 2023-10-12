@@ -1,4 +1,4 @@
-package com.danilkharytonov.foregroundserviceandbroadcastreceiver.adapters
+package com.danilkharytonov.foregroundserviceandbroadcastreceiver.presentation.item_list_view.adapters
 
 import android.view.LayoutInflater
 import android.view.View
@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.danilkharytonov.foregroundserviceandbroadcastreceiver.databinding.ItemListBinding
-import com.danilkharytonov.foregroundserviceandbroadcastreceiver.model.Item
+import com.danilkharytonov.foregroundserviceandbroadcastreceiver.data.model.Item
 
 
 class ItemListAdapter(private val binder: (Item) -> Unit) :
@@ -28,7 +28,7 @@ class ItemListAdapter(private val binder: (Item) -> Unit) :
         private val binding: ItemListBinding
     ) : RecyclerView.ViewHolder(binding.root){
 
-        fun bind(item:Item, onClick:(Item) -> Unit){
+        fun bind(item: Item, onClick:(Item) -> Unit){
             binding.itemName.text = item.name
             binding.root.setOnClickListener {
                 onClick(item)
