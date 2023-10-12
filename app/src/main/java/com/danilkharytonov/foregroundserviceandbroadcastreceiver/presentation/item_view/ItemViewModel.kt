@@ -13,15 +13,7 @@ class ItemViewModel @Inject constructor(
 
     val state: MutableLiveData<ItemViewState> = MutableLiveData(ItemViewState())
 
-    fun sendEvent(event: ItemViewEvent) {
-        when (event) {
-            is ItemViewEvent.LoadItemByIdEvent -> {
-                loadItem(event.id)
-            }
-        }
-    }
-
-    private fun loadItem(id: Int) {
+    fun loadItem(id: Int) {
         state.value?.item = getItemByIdUseCase.execute(id)
     }
 }

@@ -1,5 +1,6 @@
 package com.danilkharytonov.foregroundserviceandbroadcastreceiver.presentation.item_list_view
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.danilkharytonov.foregroundserviceandbroadcastreceiver.domain.use_cases.item_list_view.GetItemIdFromSharedPreferencesUseCase
@@ -17,31 +18,15 @@ class ListItemViewModel @Inject constructor(
 
     val state: MutableLiveData<ListItemState> = MutableLiveData(ListItemState())
 
-    fun sendEvent(event: ListItemEvent) {
-        when (event) {
-            is ListItemEvent.ItemsLoad -> {
-                getItemList()
-            }
-
-            is ListItemEvent.SaveItemId -> {
-                saveItemId(event.id)
-            }
-
-            is ListItemEvent.LoadIdFromSharedPreferences -> {
-                getItemIdFromSharedFromSharedPreferences()
-            }
-        }
-    }
-
-    private fun getItemList() {
+    fun getItemList() {
         state.value?.items = getListItemUseCase.execute().getList()
     }
 
-    private fun saveItemId(id: Int) {
+    fun saveItemId(id: Int) {
         saveItemIdUseCase.execute(id)
     }
 
-    private fun getItemIdFromSharedFromSharedPreferences() {
+    fun getItemIdFromSharedFromSharedPreferences() {
         state.value?.itemIdFromSharedPreferences = getItemIdFromSharedPreferencesUseCase.execute()
     }
 }

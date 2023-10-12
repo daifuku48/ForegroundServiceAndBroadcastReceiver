@@ -18,7 +18,7 @@ class ItemFragment : Fragment() {
     private var _binding: FragmentItemBinding? = null
     private val binding
         get() = _binding!!
-    val viewModel: ItemViewModel by viewModels()
+    private val viewModel: ItemViewModel by viewModels()
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -36,7 +36,7 @@ class ItemFragment : Fragment() {
         }
         val id = arguments?.getInt(ITEM_KEY_ID)
         if (id != null) {
-            viewModel.sendEvent(ItemViewEvent.LoadItemByIdEvent(id))
+            viewModel.loadItem(id)
         }
 
         viewModel.state.observe(viewLifecycleOwner) { state ->

@@ -18,7 +18,7 @@ import com.danilkharytonov.foregroundserviceandbroadcastreceiver.presentation.it
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class ListItemFragment : Fragment() {
+class ListItemFragment : Fragment(){
     private var _binding: FragmentListItemBinding? = null
     private val binding
         get() = _binding!!
@@ -36,7 +36,7 @@ class ListItemFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.sendEvent(event = ListItemEvent.ItemsLoad)
+        viewModel.getItemList()
         initItemList()
         checkIntentForBroadCastReceiver()
     }
@@ -45,7 +45,7 @@ class ListItemFragment : Fragment() {
         val layoutManager = LinearLayoutManager(requireContext())
         val adapter = ItemListAdapter { item ->
             //Save id in sharedPreferences
-            viewModel.sendEvent(event = ListItemEvent.SaveItemId(item.id))
+            viewModel.saveItemId(item.id)
             findNavController().navigate(
                 R.id.action_listItemFragment_to_itemFragment, bundleOf(
                     ITEM_KEY_ID to item.id
@@ -65,7 +65,7 @@ class ListItemFragment : Fragment() {
         val intent = activity?.intent
         val fragmentId = intent?.getIntExtra(FRAGMENT_ID, 0)
         if (fragmentId == ITEM_FRAGMENT_ID) {
-            viewModel.sendEvent(event = ListItemEvent.LoadIdFromSharedPreferences)
+            viewModel.getItemIdFromSharedFromSharedPreferences()
             findNavController().navigate(
                 R.id.action_listItemFragment_to_itemFragment, bundleOf(
                     ITEM_KEY_ID to viewModel.state.value?.itemIdFromSharedPreferences
