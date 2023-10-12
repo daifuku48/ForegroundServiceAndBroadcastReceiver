@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/listItemFragment"
-        android:name="com.danilkharytonov.foregroundserviceandbroadcastreceiver.fragments.ListItemFragment"
+        android:name="com.danilkharytonov.foregroundserviceandbroadcastreceiver.presentation.item_list_view.ListItemFragment"
         android:label="fragment_list_item"
         tools:layout="@layout/fragment_list_item" >
         <action
@@ -17,7 +17,7 @@
 
     <fragment
         android:id="@+id/itemFragment"
-        android:name="com.danilkharytonov.foregroundserviceandbroadcastreceiver.fragments.ItemFragment"
+        android:name="com.danilkharytonov.foregroundserviceandbroadcastreceiver.presentation.item_view.ItemFragment"
         android:label="fragment_item"
         tools:layout="@layout/fragment_item" >
     </fragment>

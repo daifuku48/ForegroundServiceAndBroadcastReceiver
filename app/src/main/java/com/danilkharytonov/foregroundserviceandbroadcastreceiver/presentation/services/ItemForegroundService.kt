@@ -1,4 +1,4 @@
-package com.danilkharytonov.foregroundserviceandbroadcastreceiver.services
+package com.danilkharytonov.foregroundserviceandbroadcastreceiver.presentation.services
 
 import android.Manifest
 import android.app.NotificationChannel
@@ -12,9 +12,9 @@ import android.os.IBinder
 import androidx.core.app.ActivityCompat
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
-import com.danilkharytonov.foregroundserviceandbroadcastreceiver.MainActivity.Companion.APP_NOTIFICATION_CLICK
-import com.danilkharytonov.foregroundserviceandbroadcastreceiver.MainActivity.Companion.CHANNEL_ID
-import com.danilkharytonov.foregroundserviceandbroadcastreceiver.MainActivity.Companion.CHANNEL_NAME
+import com.danilkharytonov.foregroundserviceandbroadcastreceiver.presentation.activity.MainActivity.Companion.APP_NOTIFICATION_CLICK
+import com.danilkharytonov.foregroundserviceandbroadcastreceiver.presentation.activity.MainActivity.Companion.CHANNEL_ID
+import com.danilkharytonov.foregroundserviceandbroadcastreceiver.presentation.activity.MainActivity.Companion.CHANNEL_NAME
 import com.danilkharytonov.foregroundserviceandbroadcastreceiver.R
 
 
