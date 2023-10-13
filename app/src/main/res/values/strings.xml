@@ -6,5 +6,12 @@
     <string name="id">"id: %d"</string>
     <string name="name">"name: %s"</string>
     <string name="description">"description: %s"</string>
+    <string name="number">"Number: %d"</string>
+    <string name="rxjava">RxJava</string>
+    <string name="kotlin_coroutines">Kotlin Coroutines</string>
+    <string name="generating_numbers">Generating Numbers</string>
+    <string name="generating_numbers_rx">Generating Numbers Rx</string>
+    <string name="generating_numbers_coroutines">Generating Numbers Coroutines</string>
+    <string name="threads">Threads</string>
 
 </resources>

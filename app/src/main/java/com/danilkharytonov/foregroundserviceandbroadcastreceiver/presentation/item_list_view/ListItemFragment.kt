@@ -53,6 +53,10 @@ class ListItemFragment : Fragment(){
             )
         }
 
+        binding.treadsButton.setOnClickListener {
+            findNavController().navigate(R.id.action_listItemFragment_to_pickTypeFragment)
+        }
+
         viewModel.state.observe(viewLifecycleOwner) { state ->
             adapter.submitList(state.items)
         }

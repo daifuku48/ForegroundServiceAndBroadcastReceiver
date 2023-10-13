@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_listItemFragment_to_itemFragment"
             app:destination="@id/itemFragment" />
+        <action
+            android:id="@+id/action_listItemFragment_to_pickTypeFragment"
+            app:destination="@id/pickTypeFragment" />
     </fragment>
 
     <fragment
@@ -20,5 +23,26 @@
         android:name="com.danilkharytonov.foregroundserviceandbroadcastreceiver.presentation.item_view.ItemFragment"
         android:label="fragment_item"
         tools:layout="@layout/fragment_item" >
+    </fragment>
+    <fragment
+        android:id="@+id/randomNumberCoroutineFragment"
+        android:name="com.danilkharytonov.foregroundserviceandbroadcastreceiver.presentation.random_number_multithreading.coroutines.RandomNumberCoroutineFragment"
+        android:label="fragment_random_number_coroutines"
+        tools:layout="@layout/fragment_random_number_coroutines" />
+    <fragment
+        android:id="@+id/randomNumberRxFragment"
+        android:name="com.danilkharytonov.foregroundserviceandbroadcastreceiver.presentation.random_number_multithreading.rx_java.RandomNumberRxFragment"
+        android:label="fragment_random_number_rx"
+        tools:layout="@layout/fragment_random_number_rx" />
+    <fragment
+        android:id="@+id/pickTypeFragment"
+        android:name="com.danilkharytonov.foregroundserviceandbroadcastreceiver.presentation.random_number_multithreading.pick_type.PickTypeFragment"
+        android:label="PickTypeFragment" >
+        <action
+            android:id="@+id/action_pickTypeFragment_to_randomNumberCoroutineFragment"
+            app:destination="@id/randomNumberCoroutineFragment" />
+        <action
+            android:id="@+id/action_pickTypeFragment_to_randomNumberRxFragment"
+            app:destination="@id/randomNumberRxFragment" />
     </fragment>
 </navigation>
