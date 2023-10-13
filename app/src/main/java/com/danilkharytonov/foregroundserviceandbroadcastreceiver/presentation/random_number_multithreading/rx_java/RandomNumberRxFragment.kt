@@ -43,6 +43,6 @@ class RandomNumberRxFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
-        disposable = null
+        disposable?.dispose()
     }
 }

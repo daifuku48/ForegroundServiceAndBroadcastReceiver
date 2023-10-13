@@ -18,12 +18,11 @@ class RandomNumberLiveDataViewModel @Inject constructor() : ViewModel() {
         generateNumbers()
     }
 
-    private var isRunning = false
+    private lateinit var thread: Thread
 
     private fun generateNumbers() {
-        isRunning = true
-        val thread = Thread {
-            while (isRunning) {
+        thread = Thread {
+            while (!thread.isInterrupted) {
                 val randomNumber = Random.nextInt(1, 100)
                 _number.postValue(randomNumber)
                 try {
@@ -38,6 +37,6 @@ class RandomNumberLiveDataViewModel @Inject constructor() : ViewModel() {
 
     override fun onCleared() {
         super.onCleared()
-        isRunning = false
+        thread.interrupt()
     }
 }
