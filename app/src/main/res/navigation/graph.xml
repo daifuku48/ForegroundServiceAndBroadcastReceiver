@@ -44,5 +44,13 @@
         <action
             android:id="@+id/action_pickTypeFragment_to_randomNumberRxFragment"
             app:destination="@id/randomNumberRxFragment" />
+        <action
+            android:id="@+id/action_pickTypeFragment_to_randomNumberLiveDataFragment"
+            app:destination="@id/randomNumberLiveDataFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/randomNumberLiveDataFragment"
+        android:name="com.danilkharytonov.foregroundserviceandbroadcastreceiver.presentation.random_number_multithreading.livedata.RandomNumberLiveDataFragment"
+        android:label="fragment_random_number_livedata"
+        tools:layout="@layout/fragment_random_number_livedata" />
 </navigation>

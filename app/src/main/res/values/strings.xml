@@ -13,5 +13,7 @@
     <string name="generating_numbers_rx">Generating Numbers Rx</string>
     <string name="generating_numbers_coroutines">Generating Numbers Coroutines</string>
     <string name="threads">Threads</string>
+    <string name="livedata">LiveData</string>
+    <string name="generating_numbers_livedata">Generating Numbers LiveData</string>
 
 </resources>

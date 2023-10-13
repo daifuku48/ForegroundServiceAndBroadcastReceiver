@@ -17,9 +17,7 @@ class PickTypeFragment : Fragment() {
         get() = _binding!!
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentPickTypeBinding.inflate(inflater)
         return _binding?.root
@@ -37,6 +35,10 @@ class PickTypeFragment : Fragment() {
 
         binding.coroutineButton.setOnClickListener {
             findNavController().navigate(R.id.action_pickTypeFragment_to_randomNumberCoroutineFragment)
+        }
+
+        binding.livedataButton.setOnClickListener {
+            findNavController().navigate(R.id.action_pickTypeFragment_to_randomNumberLiveDataFragment)
         }
     }
 

@@ -6,10 +6,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import com.danilkharytonov.foregroundserviceandbroadcastreceiver.R
 import com.danilkharytonov.foregroundserviceandbroadcastreceiver.databinding.FragmentRandomNumberCoroutinesBinding
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
 
 @AndroidEntryPoint
@@ -22,9 +26,7 @@ class RandomNumberCoroutineFragment : Fragment() {
     private val viewModel: RandomNumberCoroutinesViewModel by viewModels()
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentRandomNumberCoroutinesBinding.inflate(inflater)
         return _binding?.root
@@ -33,12 +35,19 @@ class RandomNumberCoroutineFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.number.observe(viewLifecycleOwner) { randomNumber ->
-            binding.numberText.text = getString(R.string.number, randomNumber)
-        }
-
+        initNumber()
         binding.back.setOnClickListener {
             findNavController().popBackStack()
+        }
+    }
+
+    private fun initNumber() {
+        lifecycleScope.launch {
+            lifecycle.repeatOnLifecycle(Lifecycle.State.RESUMED) {
+                viewModel.number.collect { randomNumber ->
+                    binding.numberText.text = getString(R.string.number, randomNumber)
+                }
+            }
         }
     }
 
